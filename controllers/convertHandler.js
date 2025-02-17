@@ -4,6 +4,7 @@ function ConvertHandler() {
 
     this.getNum = function (input) {
         let result;
+        if (!this.REGEX.test(input)) throw new Error("invalid number");
         let num = input.replace(this.REGEX, "$1");
         if (num.includes("/")) {
             const vals = num.split("/");
@@ -18,6 +19,7 @@ function ConvertHandler() {
 
     this.getUnit = function (input) {
         let result;
+        if (!this.REGEX.test(input)) throw new Error("invalid unit");
         result = input.replace(this.REGEX, "$2");
         if (result === "l") {
             result = "L";
