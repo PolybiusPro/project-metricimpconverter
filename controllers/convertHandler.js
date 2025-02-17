@@ -1,11 +1,12 @@
 function ConvertHandler() {
-    this.REGEX =
-        /^([\d]+(?:\.[\d]+|\/[\d]+)?(?:(?<!\/[\d]+)\/[\d]+)?)?(gal|lbs|mi|L|l|kg|km)$/;
+    this.NUM_REGEX =
+        /^([\d]+(?:\.[\d]+|\/[\d]+)?(?:(?<!\/[\d]+)\/[\d]+)?)?[a-zA-Z]+/;
+    this.UNIT_REGEX = /[\d.\/\.]*(gal|lbs|mi|L|l|kg|km)$/;
 
     this.getNum = function (input) {
         let result;
-        if (!this.REGEX.test(input)) throw new Error("invalid number");
-        let num = input.replace(this.REGEX, "$1");
+        if (!this.NUM_REGEX.test(input)) return null;
+        let num = input.replace(this.NUM_REGEX, "$1");
         if (num.includes("/")) {
             const vals = num.split("/");
             result = vals[0] / vals[1];
@@ -19,8 +20,8 @@ function ConvertHandler() {
 
     this.getUnit = function (input) {
         let result;
-        if (!this.REGEX.test(input)) throw new Error("invalid unit");
-        result = input.replace(this.REGEX, "$2");
+        if (!this.UNIT_REGEX.test(input)) return null;
+        result = input.replace(this.UNIT_REGEX, "$1");
         if (result === "l") {
             result = "L";
         }

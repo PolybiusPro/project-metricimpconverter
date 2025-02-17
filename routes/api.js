@@ -15,6 +15,10 @@ module.exports = function (app) {
         const returnNum = convertHandler.convert(initNum, initUnit);
         const returnUnit = convertHandler.getReturnUnit(initUnit);
 
+        if (!initNum && !initUnit) return res.send("invalid number and unit");
+        if (!initNum) return res.send("invalid number");
+        if (!initUnit) return res.send("invalid unit");
+
         const string = convertHandler.getString(
             initNum,
             initUnit,

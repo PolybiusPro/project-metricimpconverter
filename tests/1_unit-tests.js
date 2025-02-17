@@ -4,6 +4,8 @@ const ConvertHandler = require("../controllers/convertHandler.js");
 
 let convertHandler = new ConvertHandler();
 
+convertHandler.getNum("1/5/6kg");
+
 suite("Unit Tests", function () {
     test("convertHandler should correctly read a whole number input", () => {
         assert.strictEqual(
@@ -35,7 +37,7 @@ suite("Unit Tests", function () {
     });
 
     test("convertHandler should correctly return an error on a double-fraction (i.e. 3/2/3)", () => {
-        assert.throws(() => convertHandler.getNum("2/5/6mi"), "invalid number");
+        assert.isNull(convertHandler.getNum("2/5/6mi"), "invalid number");
     });
 
     test("convertHandler should correctly default to a numerical input of 1 when no numerical input is provided", () => {
@@ -85,7 +87,7 @@ suite("Unit Tests", function () {
     });
 
     test("convertHandler should correctly return an error for an invalid input unit", () => {
-        assert.throws(() => convertHandler.getUnit("mip"), "invalid unit");
+        assert.isNull(convertHandler.getUnit("mip"), "invalid unit");
     });
 
     test("convertHandler should return the correct return unit for each valid input unit", () => {
