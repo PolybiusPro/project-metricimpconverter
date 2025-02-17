@@ -70,4 +70,12 @@ suite("Unit Tests", function () {
             "1.5/5 is correctly read"
         );
     });
+
+    test("convertHandler should correctly default to a numerical input of 1 when no numerical input is provided", () => {
+        assert.strictEqual(
+            1,
+            convertHandler.getNum("mi"),
+            "default is 1 if no number is supplied"
+        );
+    });
 });

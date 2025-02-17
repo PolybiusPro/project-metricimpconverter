@@ -4,22 +4,20 @@ function ConvertHandler() {
 
     this.getNum = function (input) {
         let result;
-        if (!this.REGEX.test(input)) throw new Error("invalid number");
         let num = input.replace(this.REGEX, "$1");
         if (num.includes("/")) {
             const vals = num.split("/");
             result = vals[0] / vals[1];
-        } else if (input) {
-            result = +num;
-        } else {
+        } else if (!num) {
             result = 1;
+        } else {
+            result = +num;
         }
         return result;
     };
 
     this.getUnit = function (input) {
         let result;
-        if (!this.REGEX.test(input)) throw new Error("invalid unit");
         result = input.replace(this.REGEX, "$2");
         if (result === "l") {
             result = "L";
