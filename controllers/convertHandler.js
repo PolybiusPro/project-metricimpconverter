@@ -8,8 +8,10 @@ function ConvertHandler() {
         if (num.includes("/")) {
             const vals = num.split("/");
             result = vals[0] / vals[1];
-        } else {
+        } else if (input) {
             result = +num;
+        } else {
+            result = 1;
         }
         return result;
     };
