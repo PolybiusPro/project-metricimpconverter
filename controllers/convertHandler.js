@@ -29,6 +29,28 @@ function ConvertHandler() {
 
     this.getReturnUnit = function (initUnit) {
         let result;
+        switch (initUnit) {
+            case "gal":
+                result = "L";
+                break;
+            case "lbs":
+                result = "kg";
+                break;
+            case "mi":
+                result = "km";
+                break;
+            case "L":
+                result = "gal";
+                break;
+            case "kg":
+                result = "lbs";
+                break;
+            case "km":
+                result = "km";
+                break;
+            default:
+                return;
+        }
         return result;
     };
 
@@ -64,26 +86,24 @@ function ConvertHandler() {
         const lbsToKg = 0.453592;
         const miToKm = 1.60934;
         let result;
-        const num = this.getNum(initNum);
-        const unit = this.getUnit(initUnit);
-        switch (unit) {
+        switch (initUnit) {
             case "gal":
-                result = num * galToL;
+                result = initNum * galToL;
                 break;
             case "lbs":
-                result = num * lbsToKg;
+                result = initNum * lbsToKg;
                 break;
             case "mi":
-                result = num * miToKm;
+                result = initNum * miToKm;
                 break;
             case "L":
-                result = num / galToL;
+                result = initNum / galToL;
                 break;
             case "kg":
-                result = num / lbsToKg;
+                result = initNum / lbsToKg;
                 break;
             case "km":
-                result = num / miToKm;
+                result = initNum / miToKm;
                 break;
             default:
                 return;
