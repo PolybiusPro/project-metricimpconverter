@@ -4,6 +4,7 @@ function ConvertHandler() {
 
     this.getNum = function (input) {
         let result;
+        if (!this.REGEX.test(input)) throw new Error("invalid number");
         let num = input.replace(this.REGEX, "$1");
         if (num.includes("/")) {
             const vals = num.split("/");
@@ -18,6 +19,7 @@ function ConvertHandler() {
 
     this.getUnit = function (input) {
         let result;
+        if (!this.REGEX.test(input)) throw new Error("invalid unit");
         result = input.replace(this.REGEX, "$2");
         if (result === "l") {
             result = "L";
@@ -62,7 +64,30 @@ function ConvertHandler() {
         const lbsToKg = 0.453592;
         const miToKm = 1.60934;
         let result;
-
+        const num = this.getNum(initNum);
+        const unit = this.getUnit(initUnit);
+        switch (unit) {
+            case "gal":
+                result = num * galToL;
+                break;
+            case "lbs":
+                result = num * lbsToKg;
+                break;
+            case "mi":
+                result = num * miToKm;
+                break;
+            case "L":
+                result = num / galToL;
+                break;
+            case "kg":
+                result = num / lbsToKg;
+                break;
+            case "km":
+                result = num / miToKm;
+                break;
+            default:
+                return;
+        }
         return result;
     };
 
