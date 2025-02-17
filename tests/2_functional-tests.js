@@ -12,7 +12,7 @@ suite("Functional Tests", function () {
             .get("/api/convert?input=10L")
             .end((err, res) => {
                 assert.equal(res.status, 200);
-                assert.strictEqual(res.body.returnNum, 2.6417217685798895);
+                assert.strictEqual(res.body.returnNum, 2.64172);
             });
     });
     test("Convert an invalid input such as 32g: GET request to /api/convert", () => {
@@ -48,7 +48,7 @@ suite("Functional Tests", function () {
             .get("/api/convert?input=kg")
             .end((err, res) => {
                 assert.equal(res.status, 200);
-                assert.strictEqual(res.body.returnNum, 2.2046244201837775);
+                assert.strictEqual(res.body.returnNum, 2.20462);
             });
     });
 });

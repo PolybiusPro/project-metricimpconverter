@@ -1,14 +1,13 @@
 function ConvertHandler() {
-    this.NUM_REGEX =
-        /^([\d]+(?:\.[\d]+|\/[\d]+)?(?:(?<!\/[\d]+)\/[\d]+)?)?[a-zA-Z]+/;
-    this.UNIT_REGEX = /[\d.\/\.]*(gal|lbs|mi|L|l|kg|km)$/;
+    this.NUM_REGEX = /[a-z]+/i;
+    this.UNIT_REGEX = /[\d.\/\.]*(gal|lbs|mi|l|kg|km)$/i;
 
     this.getNum = function (input) {
         let result;
-        if (!this.NUM_REGEX.test(input)) return null;
-        let num = input.replace(this.NUM_REGEX, "$1");
+        let num = input.replace(this.NUM_REGEX, "");
         if (num.includes("/")) {
             const vals = num.split("/");
+            if (vals.length > 2) return null;
             result = vals[0] / vals[1];
         } else if (!num) {
             result = 1;
@@ -21,7 +20,7 @@ function ConvertHandler() {
     this.getUnit = function (input) {
         let result;
         if (!this.UNIT_REGEX.test(input)) return null;
-        result = input.replace(this.UNIT_REGEX, "$1");
+        result = input.replace(this.UNIT_REGEX, "$1").toLowerCase();
         if (result === "l") {
             result = "L";
         }
@@ -109,12 +108,15 @@ function ConvertHandler() {
             default:
                 return;
         }
+        result = +result.toFixed(5);
         return result;
     };
 
     this.getString = function (initNum, initUnit, returnNum, returnUnit) {
         let result;
-        result = `${initNum} ${initUnit} converts to ${returnNum} ${returnUnit}`;
+        const unitSpelled = this.spellOutUnit(initUnit);
+        const returnUnitSpelled = this.spellOutUnit(returnUnit);
+        result = `${initNum} ${unitSpelled} converts to ${returnNum} ${returnUnitSpelled}`;
         return result;
     };
 }
