@@ -36,5 +36,38 @@ suite("Unit Tests", function () {
             convertHandler.getUnit("1kg"),
             "kg is correctly read"
         );
+        assert.strictEqual(
+            "kg",
+            convertHandler.getUnit("kg"),
+            "kg is correctly read"
+        );
+    });
+    test("convertHandler should correctly read a whole number input", () => {
+        assert.strictEqual(
+            1,
+            convertHandler.getNum("1kg"),
+            "1 is correctly read"
+        );
+    });
+    test("convertHandler should correctly read a decimal number input", () => {
+        assert.strictEqual(
+            1.5,
+            convertHandler.getNum("1.5kg"),
+            "1.5 is correctly read"
+        );
+    });
+    test("convertHandler should correctly read a fractional number input", () => {
+        assert.strictEqual(
+            0.2,
+            convertHandler.getNum("1/5kg"),
+            "1/5 is correctly read"
+        );
+    });
+    test("convertHandler should correctly read a fractional number input with a decimal", () => {
+        assert.strictEqual(
+            0.3,
+            convertHandler.getNum("1.5/5kg"),
+            "1.5/5 is correctly read"
+        );
     });
 });

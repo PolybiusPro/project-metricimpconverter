@@ -1,16 +1,25 @@
 function ConvertHandler() {
     this.REGEX =
-        /^([\d]+(?:(?:\.[\d]+|\/[\d]+)(?<!\/[\d]+)\/[\d])?)?(gal|lbs|mi|L|l|kg|km)$/;
+        /^([\d]+(?:\.[\d]+|\/[\d]+)?(?:(?<!\/[\d]+)\/[\d]+)?)?(gal|lbs|mi|L|l|kg|km)$/;
 
     this.getNum = function (input) {
         let result;
-
+        let num = input.replace(this.REGEX, "$1");
+        if (num.includes("/")) {
+            const vals = num.split("/");
+            result = vals[0] / vals[1];
+        } else {
+            result = +num;
+        }
         return result;
     };
 
     this.getUnit = function (input) {
         let result;
         result = input.replace(this.REGEX, "$2");
+        if (result === "l") {
+            result = "L";
+        }
         return result;
     };
 
@@ -31,7 +40,7 @@ function ConvertHandler() {
             case "mi":
                 result = "miles";
                 break;
-            case "l":
+            case "L":
                 result = "liters";
                 break;
             case "kg":
