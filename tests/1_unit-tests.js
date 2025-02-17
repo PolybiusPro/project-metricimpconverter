@@ -7,30 +7,30 @@ let convertHandler = new ConvertHandler();
 suite("Unit Tests", function () {
     test("convertHandler should correctly read a whole number input", () => {
         assert.strictEqual(
-            1,
             convertHandler.getNum("1kg"),
-            "1 is correctly read"
+            1,
+            "1 should read as 1"
         );
     });
     test("convertHandler should correctly read a decimal number input", () => {
         assert.strictEqual(
-            1.5,
             convertHandler.getNum("1.5kg"),
-            "1.5 is correctly read"
+            1.5,
+            "1.5 should read as 1.5"
         );
     });
     test("convertHandler should correctly read a fractional number input", () => {
         assert.strictEqual(
-            0.2,
             convertHandler.getNum("1/5kg"),
-            "1/5 is correctly read"
+            0.2,
+            "1/5 should read as 0.2"
         );
     });
     test("convertHandler should correctly read a fractional number input with a decimal", () => {
         assert.strictEqual(
-            0.3,
             convertHandler.getNum("1.5/5kg"),
-            "1.5/5 is correctly read"
+            0.3,
+            "1.5/5 should read as 0.3"
         );
     });
 
@@ -48,39 +48,39 @@ suite("Unit Tests", function () {
 
     test("convertHandler should correctly read each valid input unit", () => {
         assert.strictEqual(
-            "gal",
             convertHandler.getUnit("1gal"),
-            "gal is correctly read"
+            "gal",
+            "gal should be returned from getUnit(input)"
         );
         assert.strictEqual(
-            "L",
             convertHandler.getUnit("1L"),
-            "L is correctly read"
+            "L",
+            "L should be returned from getUnit(input)"
         );
         assert.strictEqual(
-            "mi",
             convertHandler.getUnit("1mi"),
-            "mi is correctly read"
+            "mi",
+            "mi should be returned from getUnit(input)"
         );
         assert.strictEqual(
-            "km",
             convertHandler.getUnit("1km"),
-            "km is correctly read"
+            "km",
+            "km should be returned from getUnit(input)"
         );
         assert.strictEqual(
-            "lbs",
             convertHandler.getUnit("1lbs"),
-            "lbs is correctly read"
+            "lbs",
+            "lbs should be returned from getUnit(input)"
         );
         assert.strictEqual(
-            "kg",
             convertHandler.getUnit("1kg"),
-            "kg is correctly read"
+            "kg",
+            "kg should be returned from getUnit(input)"
         );
         assert.strictEqual(
-            "kg",
             convertHandler.getUnit("kg"),
-            "kg is correctly read"
+            "kg",
+            "kg should be returned from getUnit(input)"
         );
     });
 
@@ -99,34 +99,34 @@ suite("Unit Tests", function () {
 
     test("convertHandler should correctly convert the spelled out string unit for each valid input unit", () => {
         assert.strictEqual(
-            "gallon",
             convertHandler.spellOutUnit("gal"),
-            "gal is correctly spelled out"
+            "gallon",
+            "gal should be spelled out as gallon"
         );
         assert.strictEqual(
-            "pounds",
             convertHandler.spellOutUnit("lbs"),
-            "lbs is correctly spelled out"
+            "pounds",
+            "lbs should be spelled out as pounds"
         );
         assert.strictEqual(
-            "miles",
             convertHandler.spellOutUnit("mi"),
-            "mi is correctly spelled out"
+            "miles",
+            "mi should be spelled out as miles"
         );
         assert.strictEqual(
-            "liters",
             convertHandler.spellOutUnit("L"),
-            "L is correctly spelled out"
+            "liters",
+            "L should be spelled out as liters"
         );
         assert.strictEqual(
-            "kilograms",
             convertHandler.spellOutUnit("kg"),
-            "kg is correctly spelled out"
+            "kilograms",
+            "kg should be spelled out as kilograms"
         );
         assert.strictEqual(
-            "kilometers",
             convertHandler.spellOutUnit("km"),
-            "km is correctly spelled out"
+            "kilometers",
+            "km should be spelled out as kilometers"
         );
     });
 
