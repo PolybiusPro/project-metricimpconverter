@@ -88,6 +88,15 @@ suite("Unit Tests", function () {
         assert.throws(() => convertHandler.getUnit("mip"), "invalid unit");
     });
 
+    test("convertHandler should return the correct return unit for each valid input unit", () => {
+        assert.strictEqual("L", convertHandler.getReturnUnit("gal"));
+        assert.strictEqual("kg", convertHandler.getReturnUnit("lbs"));
+        assert.strictEqual("km", convertHandler.getReturnUnit("mi"));
+        assert.strictEqual("gal", convertHandler.getReturnUnit("L"));
+        assert.strictEqual("lbs", convertHandler.getReturnUnit("kg"));
+        assert.strictEqual("mi", convertHandler.getReturnUnit("km"));
+    });
+
     test("convertHandler should correctly convert the spelled out string unit for each valid input unit", () => {
         assert.strictEqual(
             "gallon",
@@ -119,5 +128,24 @@ suite("Unit Tests", function () {
             convertHandler.spellOutUnit("km"),
             "km is correctly spelled out"
         );
+    });
+
+    test("convertHandler should correctly convert gal to L", () => {
+        assert.strictEqual(convertHandler.convert(1, "gal"), 3.78541);
+    });
+    test("convertHandler should correctly convert lbs to kg", () => {
+        assert.strictEqual(convertHandler.convert(1, "lbs"), 0.453592);
+    });
+    test("convertHandler should correctly convert mi to km", () => {
+        assert.strictEqual(convertHandler.convert(1, "mi"), 1.60934);
+    });
+    test("convertHandler should correctly convert L to gal", () => {
+        assert.strictEqual(convertHandler.convert(1, "L"), 0.26417217685798894);
+    });
+    test("convertHandler should correctly convert kg to lbs", () => {
+        assert.strictEqual(convertHandler.convert(1, "kg"), 2.2046244201837775);
+    });
+    test("convertHandler should correctly convert mi to km", () => {
+        assert.strictEqual(convertHandler.convert(1, "km"), 0.6213727366498067);
     });
 });

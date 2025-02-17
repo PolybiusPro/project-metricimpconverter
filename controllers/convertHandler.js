@@ -46,7 +46,7 @@ function ConvertHandler() {
                 result = "lbs";
                 break;
             case "km":
-                result = "km";
+                result = "mi";
                 break;
             default:
                 return;
@@ -113,7 +113,6 @@ function ConvertHandler() {
 
     this.getString = function (initNum, initUnit, returnNum, returnUnit) {
         let result;
-
         return result;
     };
 }
