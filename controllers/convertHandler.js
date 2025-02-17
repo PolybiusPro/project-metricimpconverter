@@ -1,4 +1,6 @@
 function ConvertHandler() {
+    this.REGEX = /^([\d]+(?:\.|\/)[\d]+)(gal|lbs|mi|l|kg|km)$/;
+
     this.getNum = function (input) {
         let result;
 
@@ -13,7 +15,6 @@ function ConvertHandler() {
 
     this.getReturnUnit = function (initUnit) {
         let result;
-
         return result;
     };
 
